@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: template-postgres
+    environment:
+      POSTGRES_DB: template_db
+      POSTGRES_USER: template_user
+      POSTGRES_PASSWORD: template_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - template-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U template_user -d template_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: template-app
+    environment:
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/template_db
+      QUARKUS_DATASOURCE_USERNAME: template_user
+      QUARKUS_DATASOURCE_PASSWORD: template_password
+      QUARKUS_HTTP_PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - template-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: template-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - template-network
+    profiles:
+      - monitoring
+
+  # Optional: Grafana for metrics visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: template-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - template-network
+    profiles:
+      - monitoring
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  template-network:
+    driver: bridge
