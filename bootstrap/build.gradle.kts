@@ -1,8 +1,13 @@
 // Bootstrap module - Main application entry point
 
 plugins {
-    kotlin("plugin.allopen")
-    id("io.quarkus")
+    id("buildsrc.convention.kotlin-jvm")
+    alias(libs.plugins.kotlinAllopen)
+    alias(libs.plugins.quarkus)
+}
+
+tasks.named("test") {
+    dependsOn("quarkusBuild")
 }
 
 allOpen {
@@ -12,27 +17,42 @@ allOpen {
 }
 
 dependencies {
-    // Depend on all modules
-    implementation(project(":domain"))
-    implementation(project(":application"))
-    implementation(project(":rest-adapter"))
-    implementation(project(":persistence-adapter"))
+    // Depend on all modules using type-safe project accessors
+    implementation(projects.domain)
+    implementation(projects.application)
+    implementation(projects.adapterInputRest)
+    implementation(projects.adapterOutputPersistence)
 
-    // Quarkus core
-    implementation("io.quarkus:quarkus-arc")
-    implementation("io.quarkus:quarkus-config-yaml")
+    implementation(enforcedPlatform(libs.quarkusBom))
+    implementation(libs.bundles.kotlinxEcosystem)
+    implementation(libs.quarkusKotlin)
+    implementation(libs.quarkusVertx)
+    implementation(libs.quarkusArc)
+    implementation(libs.quarkusMutiny)
 
-    // Health checks
-    implementation("io.quarkus:quarkus-smallrye-health")
-
-    // Metrics
-    implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
-
-    // OpenTelemetry tracing
-    implementation("io.quarkus:quarkus-opentelemetry")
+    // Docker and Kubernetes
+    implementation(libs.quarkusJib)
+    implementation(libs.quarkusKubernetes)
+    implementation(libs.quarksSmallryeHealth)
+    implementation(libs.quarkusMinikube)
+    implementation(libs.quarkusHelm)
 
     // Testing
-    testImplementation("io.quarkus:quarkus-junit5-mockito")
-    testImplementation("io.rest-assured:kotlin-extensions")
-    testImplementation("io.quarkus:quarkus-jdbc-h2")
+    testImplementation(libs.bundles.unitTesting)
+    testImplementation(libs.bundles.quarkusTesting)
+    testImplementation(libs.testcontainers)
+    testImplementation(libs.testcontainersPostgresql)
+    testImplementation(libs.testcontainersJunit)
+
+    // Health checks
+    implementation(libs.quarkusSmallryeHealth)
+
+    // Metrics
+    implementation(libs.quarkusMicrometerRegistryPrometheus)
+
+    // OpenTelemetry tracing
+    implementation(libs.quarkusOpentelemetry)
+
+    // OpenAPI/Swagger documentation
+    implementation(libs.quarkusSmallryeOpenapi)
 }

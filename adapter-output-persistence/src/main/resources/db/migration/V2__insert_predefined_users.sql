@@ -1,0 +1,30 @@
+-- Insert predefined users
+INSERT INTO users (id, email, first_name, last_name, active, created_at, updated_at)
+VALUES
+    (
+        '550e8400-e29b-41d4-a716-446655440001',
+        'john.doe@example.com',
+        'John',
+        'Doe',
+        true,
+        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP
+    ),
+    (
+        '550e8400-e29b-41d4-a716-446655440002',
+        'jane.smith@example.com',
+        'Jane',
+        'Smith',
+        true,
+        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP
+    ),
+    (
+        '550e8400-e29b-41d4-a716-446655440003',
+        'admin@example.com',
+        'Admin',
+        'User',
+        true,
+        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP
+    );

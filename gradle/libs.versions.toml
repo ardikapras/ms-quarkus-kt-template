@@ -1,0 +1,156 @@
+# Version catalog for centralized dependency management
+
+[versions]
+arrowKt = "2.1.2"
+# Kotlin ecosystem
+kotlin = "2.2.20"
+kotlinxCoroutines = "1.10.2"
+kotlinxDatetime = "0.7.1"
+kotlinxSerialization = "1.9.0"
+
+# Quarkus
+quarkus = "3.29.0"
+
+# Jakarta APIs
+jakartaInject = "2.0.1"
+jakartaTransaction = "2.0.1"
+jakartaPersistence = "3.2.0"
+
+# Testing
+junit = "5.10.1"
+konsist = "0.17.3"
+kotest = "6.0.3"
+testcontainers = "1.20.4"
+
+# Code quality
+kotlinter = "4.5.0"
+
+detekt = "1.23.8"
+gradlePluginsArtifactory = "2.2.3"
+gradlePluginsVersionCatalog = "1.0.0"
+jakartaInjectApi = "2.0.1"
+jakartaTransactionApi = "2.0.1"
+kotestArrow = "2.0.0"
+kotlinxSerializationJSON = "1.9.0"
+ktlint = "13.1.0"
+quarkusJooq = "2.1.0"
+quarkusHelm = "1.2.7"
+quarkusMockk = "3.1.0"
+r2dbcPostgresql = "1.0.7.RELEASE"
+releasePaperwork = "1.12.0"
+wiremock = "3.13.1"
+
+[libraries]
+# Arrow is a library for functional programming in Kotlin
+arrowKt = { module = "io.arrow-kt:arrow-core", version.ref = "arrowKt" }
+# Inject API
+# Other Injection scope avaiavle https://quarkus.io/guides/cdi#bean-scope-available
+injectApi = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakartaInjectApi" }
+persistenceApi = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakartaPersistence" }
+transactionApi = { module = "jakarta.transaction:jakarta.transaction-api", version.ref = "jakartaTransactionApi" }
+#Jackson is a library for JSON processing
+jacksonKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+# Kotlin ecosystem
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlinStdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
+# Jakarta APIs
+jakartaInjectApi = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakartaInject" }
+jakartaTransactionApi = { module = "jakarta.transaction:jakarta.transaction-api", version.ref = "jakartaTransaction" }
+jakartaPersistenceApi = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakartaPersistence" }
+
+# Quarkus
+quarkusAgroal = { module = "io.quarkus:quarkus-agroal" }
+quarkusArc = { module = "io.quarkus:quarkus-arc" }
+quarkusBom = { module = "io.quarkus:quarkus-bom", version.ref = "quarkus" }
+quarkusFlyway = { module = "io.quarkus:quarkus-flyway" }
+quarkusJdbcPostgresql = { module = "io.quarkus:quarkus-jdbc-postgresql" }
+quarkusJib = { module = "io.quarkus:quarkus-container-image-jib" }
+quarkusJooq = { module = "io.quarkiverse.jooq:quarkus-jooq", version.ref = "quarkusJooq" }
+quarkusJunit = { module = "io.quarkus:quarkus-junit5" }
+quarkusHelm = { module = "io.quarkiverse.helm:quarkus-helm", version.ref = "quarkusHelm" }
+quarkusKotlin = { module = "io.quarkus:quarkus-kotlin" }
+quarkusKubernetes = { module = "io.quarkus:quarkus-kubernetes" }
+quarkusMockk = { module = "io.quarkiverse.mockk:quarkus-junit5-mockk", version.ref = "quarkusMockk" }
+quarkusMutiny = { module = "io.quarkus:quarkus-mutiny" }
+quarkusMinikube = { module = "io.quarkus:quarkus-minikube" }
+quarkusReactivePgClient = { module = "io.quarkus:quarkus-reactive-pg-client" }
+quarkusRedis = { module = "io.quarkus:quarkus-redis-client" }
+quarkusRest = { module = "io.quarkus:quarkus-rest" }
+quarkusRestJackson = { module = "io.quarkus:quarkus-rest-jackson" }
+quarksSmallryeHealth = { module = "io.quarkus:quarkus-smallrye-health" }
+quarkusVertx = { module = "io.quarkus:quarkus-vertx" }
+quarkusHibernateORMPanache = { module = "io.quarkus:quarkus-hibernate-orm-panache" }
+quarkusHibernateORMPanacheKotlin = { module = "io.quarkus:quarkus-hibernate-orm-panache-kotlin" }
+quarkusRestClientJackson = { module = "io.quarkus:quarkus-rest-client-jackson" }
+quarkusSmallRyeFaultTolerance = { module = "io.quarkus:quarkus-smallrye-fault-tolerance" }
+
+quarkusHibernateOrmPanacheKotlin = { module = "io.quarkus:quarkus-hibernate-orm-panache-kotlin" }
+quarkusSmallryeOpenapi = { module = "io.quarkus:quarkus-smallrye-openapi" }
+quarkusSmallryeHealth = { module = "io.quarkus:quarkus-smallrye-health" }
+quarkusMicrometerRegistryPrometheus = { module = "io.quarkus:quarkus-micrometer-registry-prometheus" }
+quarkusOpentelemetry = { module = "io.quarkus:quarkus-opentelemetry" }
+quarkusOidc = { module = "io.quarkus:quarkus-oidc" }
+quarkusHibernateValidator = { module = "io.quarkus:quarkus-hibernate-validator" }
+
+# Testing
+quarkusJunit5Mockito = { module = "io.quarkus:quarkus-junit5-mockito" }
+restAssured = { module = "io.rest-assured:rest-assured" }
+restAssuredKotlin = { module = "io.rest-assured:kotlin-extensions" }
+junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junitParams = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
+kotestCore = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotlinTest = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlinTestJunit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+kotlinxCoroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+h2Database = { module = "com.h2database:h2" }
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainersPostgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainersJunit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+quarkusTestSecurity = { module = "io.quarkus:quarkus-test-security" }
+
+[bundles]
+# Kotlin ecosystem bundle
+kotlinxEcosystem = [
+    "kotlinReflect",
+    "kotlinxCoroutines",
+    "kotlinxDatetime",
+    "kotlinxSerialization",
+]
+
+# Unit testing bundle
+unitTesting = [
+    "junitParams",
+    "kotestCore",
+    "kotlinTest",
+    "kotlinTestJunit5",
+    "konsist",
+]
+
+# Quarkus testing bundle
+quarkusTesting = [
+    "quarkusJunit",
+    "quarkusJunit5Mockito",
+    "restAssured",
+    "restAssuredKotlin",
+    "quarkusTestSecurity",
+    "quarkusMockk",
+]
+
+[plugins]
+# Kotlin plugins
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinAllopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
+kotlinJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+# Quarkus
+quarkus = { id = "io.quarkus", version.ref = "quarkus" }
+
+# Code quality
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

@@ -2,5 +2,7 @@
 // No Quarkus or framework dependencies here
 
 dependencies {
-    // Only Kotlin stdlib - keeping domain pure
+    // Jakarta Inject API for @Singleton annotation (needed for use cases)
+    // This is just the API, not an implementation - keeping domain pure
+    implementation(libs.jakartaInjectApi)
 }

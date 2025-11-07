@@ -12,7 +12,8 @@ build/
 bin/
 
 # IntelliJ
-.idea
+.idea/*
+!.idea/runConfigurations/
 *.ipr
 *.iml
 *.iws

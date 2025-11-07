@@ -1,12 +1,11 @@
 plugins {
-    kotlin("jvm") version "2.1.0"
-    kotlin("plugin.allopen") version "2.1.0"
-    kotlin("plugin.jpa") version "2.1.0"
-    id("io.quarkus") version "3.29.0"
+    id("buildsrc.convention.kotlin-jvm") apply false
+    id("java")
+    alias(libs.plugins.ktlint) apply false
 }
 
 allprojects {
-    group = "com.example.template"
+    group = "com.ardikapras.template"
     version = "1.0.0-SNAPSHOT"
 
     repositories {
@@ -16,37 +15,55 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "buildsrc.convention.kotlin-jvm")
+    apply(plugin = "java")
+    apply(
+        plugin =
+            rootProject.libs.plugins.ktlint
+                .get()
+                .pluginId,
+    )
 
-    dependencies {
-        implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:3.29.0"))
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        implementation("io.quarkus:quarkus-kotlin")
-
-        testImplementation("io.quarkus:quarkus-junit5")
-        testImplementation("io.rest-assured:rest-assured")
-        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "21"
-            javaParameters = true
-            freeCompilerArgs = listOf("-Xjsr305=strict")
+    tasks {
+        withType<Test> {
+            useJUnitPlatform()
         }
-    }
-
-    tasks.withType<Test> {
-        systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
-    }
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
-// Root project has no source code
-tasks.named("quarkusBuild") {
-    enabled = false
+// Git hooks auto-installation
+tasks.register<Copy>("copyGitHooks") {
+    description = "Copies git hooks from /hooks to .git/hooks folder"
+    group = "git hooks"
+    val destinationDir = "$rootDir/.git/hooks/"
+    from("$rootDir/hooks/")
+    into(destinationDir)
+
+    doFirst {
+        delete(destinationDir)
+    }
+}
+
+val installGitHooks =
+    tasks.register<Exec>("installGitHooks") {
+        description = "Installs git hooks and makes them executable"
+        group = "git hooks"
+        workingDir = rootDir
+        commandLine = listOf("chmod")
+        args("-R", "+x", ".git/hooks/")
+        dependsOn("copyGitHooks")
+        doLast {
+            logger.lifecycle("✅ Git hooks installed successfully")
+        }
+    }
+
+tasks.assemble {
+    dependsOn(installGitHooks)
+}
+
+dependencies {
+    implementation(projects.bootstrap)
+    implementation(libs.bundles.kotlinxEcosystem)
+    implementation(libs.bundles.unitTesting)
+    testImplementation(libs.konsist)
 }

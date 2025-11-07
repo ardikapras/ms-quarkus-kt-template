@@ -4,20 +4,15 @@ pluginManagement {
         gradlePluginPortal()
         mavenLocal()
     }
-    plugins {
-        id("io.quarkus") version "3.29.0"
-        kotlin("jvm") version "2.1.0"
-        kotlin("plugin.allopen") version "2.1.0"
-        kotlin("plugin.jpa") version "2.1.0"
-    }
 }
+
+// Enable type-safe project accessors (projects.domain instead of project(":domain"))
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "ms-quarkus-kt-template"
 
-include(
-    "domain",
-    "application",
-    "rest-adapter",
-    "persistence-adapter",
-    "bootstrap"
-)
+include(":bootstrap")
+include(":adapter-output-persistence")
+include(":domain")
+include(":application")
+include(":adapter-input-rest")
