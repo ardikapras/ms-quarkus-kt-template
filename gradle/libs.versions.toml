@@ -1,55 +1,36 @@
 # Version catalog for centralized dependency management
 
 [versions]
-arrowKt = "2.1.2"
 # Kotlin ecosystem
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 kotlinxCoroutines = "1.10.2"
 kotlinxDatetime = "0.7.1"
 kotlinxSerialization = "1.9.0"
 
 # Quarkus
-quarkus = "3.29.0"
-
-# Jakarta APIs
-jakartaInject = "2.0.1"
-jakartaTransaction = "2.0.1"
-jakartaPersistence = "3.2.0"
-
-# Testing
-junit = "5.10.1"
-konsist = "0.17.3"
-kotest = "6.0.3"
-testcontainers = "1.20.4"
-
-# Code quality
-kotlinter = "4.5.0"
-
-detekt = "1.23.8"
-gradlePluginsArtifactory = "2.2.3"
-gradlePluginsVersionCatalog = "1.0.0"
-jakartaInjectApi = "2.0.1"
-jakartaTransactionApi = "2.0.1"
-kotestArrow = "2.0.0"
-kotlinxSerializationJSON = "1.9.0"
-ktlint = "13.1.0"
+quarkus = "3.29.1"
 quarkusJooq = "2.1.0"
 quarkusHelm = "1.2.7"
 quarkusMockk = "3.1.0"
-r2dbcPostgresql = "1.0.7.RELEASE"
-releasePaperwork = "1.12.0"
-wiremock = "3.13.1"
+
+# Jakarta APIs
+jakartaInjectApi = "2.0.1"
+jakartaTransactionApi = "2.0.1"
+jakartaPersistenceApi = "3.2.0"
+
+# Libraries
+arrowKt = "2.2.0"
+
+# Testing
+junit = "6.0.1"
+konsist = "0.17.3"
+kotest = "6.0.4"
+testcontainers = "1.20.4"
+
+# Code quality
+ktlint = "13.1.0"
 
 [libraries]
-# Arrow is a library for functional programming in Kotlin
-arrowKt = { module = "io.arrow-kt:arrow-core", version.ref = "arrowKt" }
-# Inject API
-# Other Injection scope avaiavle https://quarkus.io/guides/cdi#bean-scope-available
-injectApi = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakartaInjectApi" }
-persistenceApi = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakartaPersistence" }
-transactionApi = { module = "jakarta.transaction:jakarta.transaction-api", version.ref = "jakartaTransactionApi" }
-#Jackson is a library for JSON processing
-jacksonKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 # Kotlin ecosystem
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
@@ -59,9 +40,13 @@ kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.r
 kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
 # Jakarta APIs
-jakartaInjectApi = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakartaInject" }
-jakartaTransactionApi = { module = "jakarta.transaction:jakarta.transaction-api", version.ref = "jakartaTransaction" }
-jakartaPersistenceApi = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakartaPersistence" }
+jakartaInjectApi = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakartaInjectApi" }
+jakartaTransactionApi = { module = "jakarta.transaction:jakarta.transaction-api", version.ref = "jakartaTransactionApi" }
+jakartaPersistenceApi = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakartaPersistenceApi" }
+
+# Third-party libraries
+arrowKt = { module = "io.arrow-kt:arrow-core", version.ref = "arrowKt" }
+jacksonKotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 
 # Quarkus
 quarkusAgroal = { module = "io.quarkus:quarkus-agroal" }
@@ -82,20 +67,16 @@ quarkusReactivePgClient = { module = "io.quarkus:quarkus-reactive-pg-client" }
 quarkusRedis = { module = "io.quarkus:quarkus-redis-client" }
 quarkusRest = { module = "io.quarkus:quarkus-rest" }
 quarkusRestJackson = { module = "io.quarkus:quarkus-rest-jackson" }
-quarksSmallryeHealth = { module = "io.quarkus:quarkus-smallrye-health" }
-quarkusVertx = { module = "io.quarkus:quarkus-vertx" }
-quarkusHibernateORMPanache = { module = "io.quarkus:quarkus-hibernate-orm-panache" }
-quarkusHibernateORMPanacheKotlin = { module = "io.quarkus:quarkus-hibernate-orm-panache-kotlin" }
 quarkusRestClientJackson = { module = "io.quarkus:quarkus-rest-client-jackson" }
-quarkusSmallRyeFaultTolerance = { module = "io.quarkus:quarkus-smallrye-fault-tolerance" }
-
+quarkusVertx = { module = "io.quarkus:quarkus-vertx" }
 quarkusHibernateOrmPanacheKotlin = { module = "io.quarkus:quarkus-hibernate-orm-panache-kotlin" }
-quarkusSmallryeOpenapi = { module = "io.quarkus:quarkus-smallrye-openapi" }
+quarkusHibernateValidator = { module = "io.quarkus:quarkus-hibernate-validator" }
 quarkusSmallryeHealth = { module = "io.quarkus:quarkus-smallrye-health" }
+quarkusSmallryeOpenapi = { module = "io.quarkus:quarkus-smallrye-openapi" }
+quarkusSmallRyeFaultTolerance = { module = "io.quarkus:quarkus-smallrye-fault-tolerance" }
 quarkusMicrometerRegistryPrometheus = { module = "io.quarkus:quarkus-micrometer-registry-prometheus" }
 quarkusOpentelemetry = { module = "io.quarkus:quarkus-opentelemetry" }
 quarkusOidc = { module = "io.quarkus:quarkus-oidc" }
-quarkusHibernateValidator = { module = "io.quarkus:quarkus-hibernate-validator" }
 
 # Testing
 quarkusJunit5Mockito = { module = "io.quarkus:quarkus-junit5-mockito" }
@@ -123,6 +104,13 @@ kotlinxEcosystem = [
     "kotlinxSerialization",
 ]
 
+# Jakarta APIs bundle
+jakartaApis = [
+    "jakartaInjectApi",
+    "jakartaTransactionApi",
+    "jakartaPersistenceApi",
+]
+
 # Unit testing bundle
 unitTesting = [
     "junitParams",
@@ -140,6 +128,13 @@ quarkusTesting = [
     "restAssuredKotlin",
     "quarkusTestSecurity",
     "quarkusMockk",
+]
+
+# Testcontainers bundle
+testcontainers = [
+    "testcontainers",
+    "testcontainersPostgresql",
+    "testcontainersJunit",
 ]
 
 [plugins]

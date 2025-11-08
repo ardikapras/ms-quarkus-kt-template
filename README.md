@@ -3,8 +3,8 @@
 A production-ready microservice template built with **Kotlin**, **Quarkus**, and **Hexagonal Architecture** (Ports & Adapters pattern) using a **multi-module Gradle** approach.
 
 [![Hexagonal Architecture](https://img.shields.io/badge/Architecture-Hexagonal-blue)](https://alistair.cockburn.us/hexagonal-architecture/)
-[![Quarkus](https://img.shields.io/badge/Quarkus-3.17.3-red)](https://quarkus.io/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-purple)](https://kotlinlang.org/)
+[![Quarkus](https://img.shields.io/badge/Quarkus-3.29.1-red)](https://quarkus.io/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.21-purple)](https://kotlinlang.org/)
 
 ## Table of Contents
 
@@ -154,8 +154,8 @@ Hexagonal Architecture solves these by:
 
 | Technology | Version | Why We Chose It |
 |------------|---------|-----------------|
-| **Kotlin** | 2.1.0 | • Null safety prevents NPEs<br>• Data classes reduce boilerplate<br>• Coroutines for async (future)<br>• Excellent Java interop |
-| **Quarkus** | 3.17.3 | • Fastest startup time (0.05s)<br>• Low memory footprint (70MB)<br>• Native compilation support<br>• Dev mode with live reload<br>• Built for cloud-native/Kubernetes |
+| **Kotlin** | 2.2.21 | • Null safety prevents NPEs<br>• Data classes reduce boilerplate<br>• Coroutines for async (future)<br>• Excellent Java interop |
+| **Quarkus** | 3.29.1 | • Fastest startup time (0.05s)<br>• Low memory footprint (70MB)<br>• Native compilation support<br>• Dev mode with live reload<br>• Built for cloud-native/Kubernetes |
 | **Gradle** | 8.12 | • Multi-module project support<br>• Kotlin DSL for type-safe builds<br>• Better caching than Maven<br>• Parallel execution |
 | **PostgreSQL** | 16 | • ACID compliance<br>• JSON support for flexibility<br>• Excellent performance<br>• Production-proven |
 

@@ -33,16 +33,14 @@ dependencies {
     // Docker and Kubernetes
     implementation(libs.quarkusJib)
     implementation(libs.quarkusKubernetes)
-    implementation(libs.quarksSmallryeHealth)
+    implementation(libs.quarkusSmallryeHealth)
     implementation(libs.quarkusMinikube)
     implementation(libs.quarkusHelm)
 
     // Testing
     testImplementation(libs.bundles.unitTesting)
     testImplementation(libs.bundles.quarkusTesting)
-    testImplementation(libs.testcontainers)
-    testImplementation(libs.testcontainersPostgresql)
-    testImplementation(libs.testcontainersJunit)
+    testImplementation(libs.bundles.testcontainers)
 
     // Health checks
     implementation(libs.quarkusSmallryeHealth)
